@@ -1,0 +1,37 @@
+<nav class="background-quinary horizontal-navbar show-mobile show-desktop show-tablet">
+    <div class="grid-container">
+        <div class="nav-menu grid-parent">
+            <div class="grid-75 tablet-grid-75">
+                <div class="grid-15 tablet-grid-20 {{#compare selectedNav "==" "search"}}title{{else}}cta{{/compare}} divider">
+                    <a href="/account/profile">
+                        <span class="text-uppercase art-IA-search">Search</span>
+                    </a>
+                </div>
+                <div class="grid-15 tablet-grid-25 {{#compare selectedNav "==" "reports"}}title{{else}}cta{{/compare}}">
+                    <a href="/account/profile/addressbook">
+                        <span class="text-uppercase art-IA-reports">Reports</span>
+                    </a>
+                </div>
+                <div class="grid-20 tablet-grid-30 {{#compare selectedNav "==" "contracts"}}title{{else}}cta{{/compare}}">
+                    <a href="/account/profile/paymentmethods">
+                    <span class="text-uppercase art-IA-contracts">Contracts</span>
+                    </a>
+                </div>
+            </div>
+            <div class="grid-25 tablet-grid-25">
+                <div data-dropdown-trigger="click" class="dropdown dropdown-container" tabindex="0">
+                    <div class="btn btn-secondary btn-large js-dropdown art-IA-manageAccts">
+                        Manage Accounts<i aria-hidden="true" class="icon-arrow-down"></i>
+                    </div>
+                 <div class="dropdown-menu background-white">
+                    <ul tabindex="0" role="navigation" class="list-menu">
+                        <li>Organization</li>
+                        <li>Internal Admin</li>
+                        <li>Lowes Account Manager</li>
+                    </ul>
+                </div>
+             </div>
+            </div>
+        </div>
+    </div>
+</nav>

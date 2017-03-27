@@ -1,0 +1,38 @@
+<div class="grid-100 tablet-grid-100 mobile-grid-100 v-spacing-small">
+    <h4 class="art-ma-up-purchasingPrefLbl">Purchasing Preferences</h4>
+    <hr>
+</div>
+<div class="grid-parent v-spacing-large">
+    <div class="grid-100 tablet-grid-100 mobile-grid-100">
+        <div class="grid-30 tablet-grid-30 mobile-grid-100 v-spacing-medium">
+            <h6 class="art-ma-up-purchaseLmtLbl">Purchase Limit
+                <a href="#example" data-content="A purchase limit is the maximum amount per transaction an admin sets for a user or group. Setting this limit won't override an individual's purchase limit that has already been set." data-placement="top" data-trigger="click" data-toggle="popover" tabindex="0" data-original-title="" title="" aria-describedby="popover764397">
+                    <span class="info-wrap">
+                        <i class="icon-info" aria-hidden="true"></i>
+                    <span class="ada screen-reader-only">More Information</span>
+                    </span>
+                </a>
+            </h6>
+            {{#if userDetails.purchaseLimit}}
+            	<p class="art-ma-up-purchaseLmt">${{formatPrice userDetails.purchaseLimit}}<p>
+            {{else}}
+            	<p class="art-ma-up-purchaseLmt">No Limit set</p>
+            {{/if}}
+        </div>
+        <div class="grid-30 tablet-grid-30 mobile-grid-100">
+            <h6 class="art-ma-up-purchaseFromCtlgLbl">Purchase From Catalog
+                <a href="#example" data-content="Catalogs are an easy way to categorize and save items for buyers to shop from pre-approved products. You can limit purchases to catalogs so buyers may only purchase from the items you've chosen." data-placement="top" data-trigger="click" data-toggle="popover" tabindex="0" data-original-title="" title="" aria-describedby="popover764397">
+                    <span class="info-wrap">
+                        <i class="icon-info" aria-hidden="true"></i>
+                    <span class="ada screen-reader-only">More Information</span>
+                    </span>
+                </a>
+            </h6>
+            {{#if userDetails.purchaseCatalog}}
+            	<p class="art-ma-up-purchaseFromCtlg">Required</p>
+            {{else}}
+            	<p class="art-ma-up-purchaseFromCtlg">Not Required</p>
+            {{/if}}
+        </div>
+    </div>
+</div>

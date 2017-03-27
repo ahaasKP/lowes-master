@@ -1,0 +1,26 @@
+<div class="grid-100 tablet-grid-100 mobile-grid-100 v-spacing-small">
+    <h4 class="art-ma-up-addressInfoLbl">Account Info</h4>
+    <hr>
+</div>
+<div class="grid-parent v-spacing-large">
+    <div class="grid-100 tablet-grid-100 mobile-grid-100">
+        <div class="grid-30 tablet-grid-30 mobile-grid-100 v-spacing-medium">
+            <h6 class="art-ma-up-statusLbl">Status</h6>
+            {{#compare userDetails.status "==" "Pending"}}
+                <p class="art-ma-up-status">(Pending) <a href="#" tabindex="0" class="js-resend-invite">Resend Invite</a>
+            {{else}}
+                <p class="art-ma-up-status">{{userDetails.status}}</p>
+            {{/compare}}
+        </div>
+        <div class="grid-30 tablet-grid-30 mobile-grid-100 v-spacing-medium">
+            <h6>Role</h6>
+            <p class="art-ma-up-role">{{userRole}}</p>
+        </div>
+        {{#if userGroup}}
+            <div class="grid-30 tablet-grid-30 mobile-grid-100 v-spacing-medium">
+                <h6>Group</h6>
+                <p class="art-ma-up-group">{{userGroup}}</p>
+            </div>
+        {{/if}}
+    </div>
+</div>

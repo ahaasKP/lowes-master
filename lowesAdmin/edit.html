@@ -1,0 +1,101 @@
+<div class="grid-container">
+    <div class="grid-100 tablet-grid-100 mobile-grid-100 v-spacing-large">
+        <div class="trench trench-light trench-medium">
+            <div class="grid-90 tablet-grid-90 mobile-grid-90">
+                <h2 class="art-ma-users-manageUsersLbl">Manage Lowe's Account Managers (LAM)</h2>
+            </div>
+        </div>
+    </div>
+    <div class="grid-100 tablet-grid-100 mobile-grid-100 v-spacing-large js-users-errors">
+        <div class="grid-50 mobile-grid-100 tablet-grid-50 grid-parent">
+            <div class="grid-50 tablet-grid-50 mobile-grid-100 grid-parent js-new-user-btn-container">
+                <a class="btn-primary btn btn-block art-ma-users-createUserBtn" href="/account/organization/users/create">Create New LAM</a>
+            </div>
+
+            <!-- <div class="grid-50 tablet-grid-50 mobile-grid-100">
+                <a class="btn-secondary btn btn-block display-none js-move-users" href="#" id="move-users">Move LAM(s)</a>
+            </div>
+
+            <div class="grid-50 tablet-grid-50 mobile-grid-100">
+                <a class="btn-secondary btn btn-block display-none js-delete-users" href="#" id="delete-users">Delete LAM(s)</a>
+            </div> -->
+        </div>
+
+        {{#if showFilter}}
+        <!-- <div class="grid-50 tablet-grid-50 mobile-grid-100 grid-parent">
+            <div class="grid-40 tablet-grid-40 mobile-grid-100
+            {{#compare viewsize "==" "large"}}align-right{{else}}grid-parent{{/compare}}">
+                <div class="vertical-center">
+                    <label class="art-ma-users-filterUsersLbl">Filter Users By</label>
+                </div>
+            </div>
+                <div class="grid-60 tablet-grid-60 mobile-grid-100 grid-parent">
+                    <div class="form-group select inverse">
+                        <label id="ada-filter-select" for="filter-select-input">
+                            <select id="filter-select-input" class="form-control art-ma-users-filterUsersDropDown" name="filter" aria-labelledby="ada-filter-select-describedby" aria-describedby="ada-filter-select-describedby">
+                                <option value="">ALL</option>
+                                {{#each businessUnits}}
+                                    <option value="{{displayName}}">{{displayName}}</option>
+                                {{/each}}
+                                <option value="-">Assigned to the Organization</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div> -->
+        {{/if}}
+    </div>
+    <div class="grid-100 table-grid-100 mobile-grid-100 form-group">
+        <table class="table striped full-width no-borders pro-org-list" id="users-table" data-toggle="table"
+               data-sort-name="{{#if showFilter}}group{{else}}name{{/if}}" data-sort-order="asc" data-unique-id="userId">
+            <thead>
+            <tr>
+                {{#compare viewsize "==" "large"}}
+                    <th data-field="checkBoxState" data-checkbox="true" data-formatter="stateFormatter"></th>
+                {{/compare}}
+                <th data-field="name" data-order="desc" data-sortable="true" class="art-ma-users-nameLbl" data-formatter="Lowes.ProAccount.displayNameFormatter">Name</th>
+                <th data-field="role" data-order="desc" data-sortable="true" class="art-ma-users-roleLbl">Email</th>
+                <th data-field="group" data-order="desc" data-sortable="true" class="art-ma-users-groupLbl" data-formatter="Lowes.ProAccount.displayGroupFormatter" data-visible="{{showFilter}}">Phone Number</th>
+                <th data-field="catalogs" data-order="desc" data-sortable="true" class="art-ma-users-catalogsLbl">Organization Managed</th>
+                <th data-field="plimit" data-order="desc" data-sortable="true" class="art-ma-users-purchaseLmtLbl" data-formatter="Lowes.ProAccount.displayPurchaseLimitFormatter">Groups Managed</th>
+                <th data-field="status" data-order="desc" data-sortable="true" class="art-ma-users-statusLbl">Status</th>
+                <th data-field="userId" data-order="desc" data-visible="false"></th>
+                <th data-field="groupId" data-order="desc" data-visible="false"></th>
+                <th data-field="purchaseLimitType" data-order="desc" data-visible="false"></th>
+                <th data-field="selectable" data-visible="false">selectable</th>
+            </tr>
+            </thead>
+            <!-- <tbody>
+            {{#each users}}
+                <tr>
+                    {{#compare ../viewsize "==" "large"}}
+                        <td data-checkbox="true"></td>
+                    {{/compare}}
+                    <td class="art-ma-users-nameUser{{@index}}">{{lastName}}, {{firstName}}</td>
+                    <td class="art-ma-users-roleUser{{@index}}">{{displayRole}}</td>
+                    <td class="art-ma-users-groupUser{{@index}}">{{#if parentOrgEntityName}}{{orgEntityName}}{{else}}-{{/if}}</td>
+                    <td class="art-ma-users-catalogsUser{{@index}}">{{nbrCatalogs}}</td>
+                    <td class="art-ma-users-purchaseLmtUser{{@index}}">{{#if purchaseLimit}}${{formatPrice purchaseLimit}}{{else}}None{{/if}}</td>
+                    <td class="art-ma-users-statusUser{{@index}}">{{#compare status "==" "Active"}}{{status}}{{else}}<p class="pending">(Pending)</p><a href="#">Resend Invite</a>{{/compare}}</td>
+                    <td>{{userId}}</td>
+                    <td>{{orgEntityId}}</td>
+                    <td>{{purchaseLimitType}}</td>
+                    <td>{{selectable}}</td>
+                </tr>
+            {{/each}}
+            </tbody> -->
+        </table>
+    </div>
+
+    {{#compare viewsize "!=" "small"}}
+    <script>
+      function stateFormatter(value, row, index) {
+          console.log('selectable=' + JSON.stringify(row))
+        return {
+            disabled: row.selectable == "false",
+            checked: false
+        }
+      }
+    </script>
+    {{/compare}}
+</div>

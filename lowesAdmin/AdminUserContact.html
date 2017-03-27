@@ -1,0 +1,23 @@
+<div class="grid-100 tablet-grid-100 mobile-grid-100 align-right">
+    <a href="/account/organization/users/edit/{{userDetails.userId}}" class="art-ma-up-editProfile">Edit Profile</a>
+</div>
+<div class="grid-100 tablet-grid-100 mobile-grid-100 v-spacing-small">
+    <h4 class="art-ma-up-contactInfoLbl">Contact Info</h4>
+    <hr>
+</div>
+<div class="grid-parent v-spacing-large pro-org-contact-info">
+    <div class="grid-100 tablet-grid-100 mobile-grid-100">
+        <div class="grid-30 tablet-grid-30 mobile-grid-100 v-spacing-medium">
+            <h6 class="art-ma-up-email">Email Address</h6>
+            <a href="mailto:{{userDetails.email}}">{{userDetails.email}}</a>           
+        </div>
+        <div class="grid-60 tablet-grid-60 mobile-grid-100 v-spacing-medium">
+            <h6 class="art-ma-up-industry">Industry</h6>
+            {{#each userDetails.segmentName}}
+                {{#if @first}}
+                    <p>{{@key}}</p>
+                {{/if}}
+            {{/each}}
+        </div>
+    </div>
+</div>

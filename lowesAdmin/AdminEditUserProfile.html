@@ -1,0 +1,215 @@
+<div class="trench trench-light trench-large no-border">
+    <div class="grid-80 tablet-grid-90 mobile-grid-100">
+        <div class="grid-100 tablet-grid-100 mobile-grid-100 v-spacing-large">
+            <h2 class="art-ma-cu-createUserLbl">Edit User Profile</h2>
+        </div>
+        <form id="edit-user-form" action="/" method="post" autocomplete="on" role="form" novalidate="novalidate">
+            <input id="js-userid-input" type="hidden" value="{{userDetails.userId}}"/>
+            <input id="js-email-input" type="hidden" value="{{userDetails.email}}"/>
+            <input id="js-isAdmin" type="hidden" value="{{isAdmin}}"/>
+            <div class="grid-100 grid-parent">
+                <div class="grid-50 tablet-grid-50 mobile-grid-100 v-spacing-medium">
+                    <div class="form-group">
+                        <label id="ada-firstname" for="firstname-input">First Name</label>
+                        <input data-original="{{userDetails.firstName}}" value="{{userDetails.firstName}}" id="firstname-input" class="form-control art-ma-up-firstName" type="text" autocompletetype="firstname" placeholder="First Name" name="firstname" aria-labelledby="ada-firstname-describedby" aria-describedby="ada-firstname-describedby">
+                <span class="inline-help">Please enter your name./span>
+                <span id="ada-firstname-describedby" class="ada screen-reader-only"Please enter a First Name</span>
+                    </div>
+                </div>
+                <div class="grid-50 tablet-grid-50 mobile-grid-100 v-spacing-medium">
+                    <div class="form-group">
+                        <label id="ada-lastname" for="lastname-input">Last Name</label>
+                        <input data-original="{{userDetails.lastName}}" value="{{userDetails.lastName}}" id="lastname-input" class="form-control art-ma-up-lastName" type="text" autocompletetype="lastname" placeholder="Last Name" name="lastname" aria-labelledby="ada-lastname-describedby" aria-describedby="ada-lastname-describedby">
+                        <span class="inline-help">Please enter your last name.</span>
+                        <span id="ada-lastname-describedby" class="ada screen-reader-only">Please enter a Last Name</span>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-100 grid-parent">
+                <div class="grid-50 tablet-grid-50 mobile-grid-100 v-spacing-large">
+                    <div class="form-group">
+                        <label id="ada-title" for="title-input">Title</label>
+                        <input data-original="{{userDetails.personTitle}}" value="{{userDetails.personTitle}}" id="title-input" class="form-control art-ma-up-title" type="text" autocompletetype="title" placeholder="Title" name="title" aria-labelledby="ada-title-describedby" aria-describedby="ada-title-describedby">
+                <span class="inline-help">Please enter your title./span>
+                <span id="ada-title-describedby" class="ada screen-reader-only"Please enter your title</span>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-100 tablet-grid-100 mobile-grid-100 v-spacing-medium">
+                <label>User Role</label>
+                <div class="form-group radio toggle vertical-block">
+                    <label id="buyer-role-label" for="buyer-role">
+                        <input data-original="{{#compare userDetails.displayRole '==' 'Buyer'}}true{{/compare}}" id="buyer-role" class="art-ma-up-buyerRadioBtn" type="radio" aria-labelledby="buyer-role-label" name="roleId"
+                               {{#compare userDetails.displayRole '==' 'Buyer'}}checked{{/compare}}>
+                        Buyer
+                    </label>
+                    <label id="admin-role-label" for="admin-role">
+                        <input data-original="{{#compare userDetails.displayRole '!=' 'Buyer'}}true{{/compare}}" id="admin-role" class="art-ma-up-adminRadioBtn" type="radio" aria-labelledby="admin-role-label" name="roleId"
+                               {{#compare userDetails.displayRole '!=' 'Buyer'}}checked{{/compare}}>
+                        {{#compare userDetails.displayRole '==' 'Buyer'}}Admin{{else}}{{userDetails.displayRole}}{{/compare}}
+                    </label>
+                    <span class="inline-help">You must select a User Role.</span>
+                    <span id="ada-roleId-describedby" class="ada screen-reader-only">Please select a User Role.</span>
+                </div>
+            </div>
+            {{#if isAdmin}}
+                {{#compare businessUnits.length '>' 0}}
+                    <div class="grid-100 grid-parent">
+                        <div class="grid-50 tablet-grid-50 mobile-grid-100 v-spacing-medium">
+                            <label for="group-select-input">Group <a href="#groups" data-content="If a group is not choosen this user will remain associated to the organization." data-placement="top" data-trigger="click" data-toggle="popover" tabindex="0" data-original-title="" title="" aria-describedby="popover764397">
+                            <span class="info-wrap">
+                                <i class="icon-info" aria-hidden="true"></i>
+                                    <span class="ada screen-reader-only">More Information</span>
+                                </span>
+                            </a>
+                            </label>
+                            <div class="form-group select inverse">
+                                <label id="group-select-input-label" for="ada-group-select">
+                                    <select data-original="{{userDetails.orgEntityId}}" id="group-select-input" class="form-control art-ma-up-group" name="group-select-input" aria-labelledby="ada-group-select-describedby" aria-describedby="ada-group-select-describedby">
+                                        <option value="{{user.orgEntityId}}">Select a Group</option>
+                                        {{#each businessUnits}}
+                                            <option {{#compare ../userDetails.orgEntityId '===' organizationId}}selected{{/compare}} value="{{organizationId}}">{{displayName}}</option>
+                                        {{/each}}
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                {{/compare}}
+            {{/if}}
+            <div class="grid-100 grid-parent">
+                <div class="grid-50 tablet-grid-50 mobile-grid-100 v-spacing-medium">
+                    <div class="form-group">
+                        <label id="ada-address" for="address-line-one-input">Address</label>
+                        <input data-original="{{userDetails.addressLine1}}" value="{{userDetails.addressLine1}}" id="address-line-one-input" class="form-control art-ma-mp-Address1" type="text" autocompletetype="address1" placeholder="Example: 123 Main Street or P.O. Box 123" name="address" aria-labelledby="ada-address-line-one-describedby" aria-describedby="ada-address-line-one-describedby">
+                        <span class="inline-help">Your Address</span>
+                        <span id="ada-address-line-one-describedby" class="ada screen-reader-only">Please enter an address.</span>
+                    </div>
+                </div>
+                <div class="grid-50 tablet-grid-50 mobile-grid-100 v-spacing-medium">
+                    <div class="form-group">
+                        <label id="ada-address-two" for="address-line-two-input">Address Line 2</label>
+                        <input data-original="{{userDetails.addressLine2}}" value="{{userDetails.addressLine2}}" id="address-line-two-input" class="form-control art-ma-mp-Address2" type="text" autocompletetype="address2" placeholder="Example: Apt #2" name="addressline2" aria-labelledby="ada-address-line-two-describedby" aria-describedby="ada-address-line-two-describedby">
+                        <span class="inline-help">Your Address Line 2</span>
+                        <span id="ada-address-line-two-describedby" class="ada screen-reader-only">Please enter your address line two. This is optional.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-100 grid-parent">
+                <div class="grid-50 tablet-grid-50 mobile-grid-100 v-spacing-medium">
+                    <div class="form-group">
+                        <label id="ada-city" for="city-input">City</label>
+                        <input data-original="{{userDetails.city}}" value="{{userDetails.city}}" id="city-input" class="form-control art-ma-mp-city" type="text" autocompletetype="city" placeholder="City" name="city" aria-labelledby="ada-city-describedby" aria-describedby="ada-city-describedby">
+                        <span class="inline-help">Your City</span>
+                        <span id="ada-city-describedby" class="ada screen-reader-only">City</span>
+                    </div>
+                </div>
+                <div class="grid-50 tablet-grid-50 mobile-grid-100 v-spacing-medium">
+                    <div class="form-group">
+                        <label id="ada-zipcode" for="zipcode-input">Zip Code</label>
+                        <input data-original="{{userDetails.zipcode}}" value="{{userDetails.zipcode}}" id="zipcode-input" class="form-control art-ma-mp-zipCode" autocompletetype="zipcode" placeholder="Enter Zip Code" maxlength="5" name="zip" aria-labelledby="ada-zipcode-describedby" aria-describedby="ada-zipcode-describedby">
+                        <span class="inline-help">You must enter your Zip code.</span>
+                        <span id="ada-zipcode-describedby" class="ada screen-reader-only">Please enter your zip code.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-50 tablet-grid-50 mobile-grid-100 suffix-50 v-spacing-medium">
+                <label for="state-select-input">State</label>
+                <div class="form-group select inverse">
+                    <label id="ada-state-select" for="state-select-input">
+                        <select data-original="{{userDetails.state}}" id="state-select-input" class="form-control art-ma-mp-stateProvince" name="state" aria-labelledby="ada-state-select-describedby" aria-describedby="ada-state-select-describedby">
+                            {{>states}}
+                        </select>
+                    </label>
+                    <span class="inline-help">You must choose a state.</span>
+                </div>
+            </div>
+            <div class="grid-100 grid-parent">
+                <div class="grid-50 tablet-grid-50 mobile-grid-100 v-spacing-medium">
+                    <div class="form-group">
+                        <label id="ada-phone" for="phone-input">Phone Number</label>
+                        <input data-original="{{userDetails.phone1}}" value="{{userDetails.phone1}}" id="phone-input" class="form-control art-ma-mp-editPhoneNbr" type="tel" autocompletetype="phone" placeholder="Enter Phone Number" name="phone" aria-labelledby="ada-phone-describedby" aria-describedby="ada-phone-describedby">
+                        <span class="inline-help">704-867-5309</span>
+                        <span id="ada-phone-describedby" class="ada screen-reader-only">Please enter your phone number.</span>
+                    </div>
+                </div>
+                <div class="grid-50 tablet-grid-50 mobile-grid-100 v-spacing-medium">
+                    <div class="form-group">
+                        <label id="ada-phone-extension" for="ext-input">Extension</label>
+                        <input data-original="{{userDetails.extension1}}" value="{{userDetails.extension1}}" id="ext-input" class="form-control art-ma-mp-editExt" type="tel" placeholder="Optional" name="ext" aria-labelledby="ada-phone-extension" aria-describedby="ada-phone-ext-describedby">
+                        <span id="ada-phone-ext-describedby" class="ada screen-reader-only">Please enter your phone extension.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-100 tablet-grid-100 mobile-grid-100 v-spacing-large">
+                <div class="form-group">
+                    <label id="ada-is-org-address">
+                        <input {{#compare userDetails.phone1Type '==' 'MOB'}}checked{{/compare}} id="is-mob" name="isorgaddress" type="checkbox" aria-labelledby="ada-is-org-address" aria-describedby="ada-is-org-address">
+                        <span class="checkbox-label art-ma-mp-mobileNbrChkBox">This is a mobile number</span>
+                        <span id="ada-is-org-address" class="ada screen-reader-only">This is a mobile number.</span>
+                    </label>
+                </div>
+            </div>
+            <div class="grid-100 grid-parent">
+                <div class="grid-50 tablet-grid-50 mobile-grid-100 v-spacing-medium">
+                    <label for="state-select-input">Industry</label>
+                    <div class="form-group select inverse">
+                        <label id="industry-select-label" for="ada-group-select">
+                            <select data-original="{{segmentName}}" id="industry-select-input" class="form-control art-ma-mp-editIndustry" name="industry" aria-labelledby="ada-industry-select-describedby" aria-describedby="ada-industry-select-describedby">
+                                <option value disabled selected>Select an Industry</option>
+                                {{#each segmentList}}
+                                    <option {{#compare ../segmentName '==' segmentId}}selected{{/compare}} value="{{segmentId}}">{{segmentName}}</option>
+                                {{/each}}
+                            </select>
+                        </label>
+                        <span class="inline-help">You must choose an industry.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-100 grid-parent">
+                <div class="grid-50 tablet-grid-50 mobile-grid-100 v-spacing-large js-hide {{#compare userDetails.displayRole '!=' 'Buyer'}}display-none{{/compare}}">
+                    <div class="form-group">
+                        <label id="ada-purchaselimit" for="purchaselimit-input">User Purchase Limit <a href="#info" data-content="A purchase limit is the maximum amount per transaction an admin sets for a user or group. Setting this limit won't override an individual's purchase limit that has already been set. " data-placement="top" data-trigger="click" data-toggle="popover" tabindex="0" data-original-title="" title="" aria-describedby="ada-purchaselimit-describedby">
+                            <span class="info-wrap">
+                                <i class="icon-info" aria-hidden="true"></i>
+                                <span class="ada screen-reader-only">A purchase limit is the maximum amount per transaction an admin sets for a user or group. Setting this limit won't override an individual's purchase limit that has already been set.</span>
+                            </span>
+                        </a>
+                        </label>
+                        <input data-original="{{userDetails.purchaseLimit}}" value="{{userDetails.purchaseLimit}}" id="purchaselimit-input" class="form-control art-ma-up-purchasingLimit" autocompletetype="purchaselimit" placeholder="Optional" maxlength="10" name="purchaselimit" aria-labelledby="ada-purchaselimit-describedby" aria-describedby="ada-purchaselimit-describedby">
+                        <span class="inline-help">You must enter your Purchase Limit.</span>
+                        <span id="ada-purchaselimit-describedby" class="ada screen-reader-only">Please enter your group purchase limit.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-100 tablet-grid-100 mobile-grid-100 v-spacing-medium js-hide {{#compare userDetails.displayRole '!=' 'Buyer'}}display-none{{/compare}}">
+                <div class="form-group">
+                    <label id="ada-is-catalog-purchase">
+                        <input id="is-catalog-purchase" name="iscatalogpurchase" type="checkbox" aria-labelledby="ada-is-catalog-purchase">
+                            <span class="checkbox-label art-ma-up-purchaseFromCatalog">User must purchase from a catalog.<a href="#example" data-content="Catalogs are an easy way to categorize and save items for buyers to shop from pre-approved products. You can limit purchases to catalogs so buyers may only purchase from the items you've chosen." data-placement="top" data-trigger="click" data-toggle="popover" tabindex="0" data-original-title="" title="" aria-describedby="popover764397">
+                        <span class="info-wrap">
+                        <i class="icon-info" aria-hidden="true"></i>
+                        <span class="ada screen-reader-only"/>
+                        </span>
+                            </a></span>
+                    </label>
+                </div>
+            </div>
+            <div>
+            <div class="grid-100 tablet-grid-100 mobile-grid-100 grid-parent">
+                <div class="grid-25 tablet-grid-25 mobile-grid-100 v-spacing-large">
+                    <button role="button" type="submit" class="btn-primary btn btn-block art-ma-up-saveBtn" href="#">Save</button>
+                </div>
+                <div class="grid-25 tablet-grid-25 mobile-grid-100 v-spacing-large">
+                    <a role="button" type="button" name="cancel" class="btn btn-secondary btn-block art-ma-up-cancelBtn" href="/account/organization/users/{{userId}}">Cancel</a>
+                </div>
+                {{#if isDeletable}}
+                    <div class="grid-50 tablet-grid-50 mobile-grid-100 v-spacing-large {{#compare viewsize "==" "large"}}align-right{{/compare}} {{#compare viewsize "==" "small"}}align-center{{/compare}}">
+                        <a class="red btn btn-link-medium js-remove-user" href="#">Disassociate from Organization</a>
+                    </div>
+                {{/if}}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
